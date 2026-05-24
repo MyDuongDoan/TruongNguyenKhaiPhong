@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trương Nguyễn Khải Phong – Chuyên gia Tâm lý Trị liệu</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&family=Dancing+Script:wght@600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --sage: #7a9e87;
+    --sage-light: #a8c5b0;
+    --sage-pale: #e8f0eb;
+    --cream: #faf7f2;
+    --warm-white: #fffef9;
+    --terracotta: #c17f5a;
+    --terracotta-light: #e8b89a;
+    --charcoal: #2d2d2d;
+    --mid-grey: #6b6b6b;
+    --light-grey: #e2ddd8;
+    --gold: #c9a96e;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--charcoal);
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; width: 100%; z-index: 100;
+    padding: 1.2rem 2.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(250,247,242,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid rgba(122,158,135,0.15);
+    transition: all 0.3s;
+  }
+  .nav-logo {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    color: var(--sage);
+    letter-spacing: 0.02em;
+  }
+  .nav-links {
+    display: flex; gap: 2rem; list-style: none;
+  }
+  .nav-links a {
+    font-size: 0.82rem; letter-spacing: 0.08em; text-transform: uppercase;
+    color: var(--mid-grey); text-decoration: none; font-weight: 500;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--sage); }
+  .nav-cta {
+    background: var(--sage); color: white !important;
+    padding: 0.5rem 1.2rem; border-radius: 2rem;
+    font-size: 0.78rem !important;
+  }
+  .nav-cta:hover { background: var(--terracotta) !important; color: white !important; }
+
+  /* ── HERO ── */
+  #hero {
+    min-height: 100vh;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    align-items: center;
+    padding: 7rem 6rem 4rem;
+    position: relative;
+    overflow: hidden;
+    background: var(--warm-white);
+  }
+  .hero-bg-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: radial-gradient(circle, var(--sage-pale) 0%, transparent 70%);
+  }
+  .hero-bg-circle.c1 { width: 600px; height: 600px; top: -150px; right: -100px; opacity: 0.7; }
+  .hero-bg-circle.c2 { width: 300px; height: 300px; bottom: 50px; left: -50px; opacity: 0.4; }
+
+  .hero-text { position: relative; z-index: 2; }
+  .hero-eyebrow {
+    display: inline-block;
+    font-size: 0.75rem; letter-spacing: 0.15em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500;
+    padding: 0.35rem 0.9rem;
+    border: 1px solid var(--terracotta-light);
+    border-radius: 2rem;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-name {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 4rem; font-weight: 500; line-height: 1.1;
+    color: var(--charcoal); margin-bottom: 0.4rem;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-nickname {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.8rem; color: var(--sage); margin-bottom: 1.2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.5s forwards;
+  }
+  .hero-title {
+    font-size: 0.9rem; color: var(--mid-grey); line-height: 1.6;
+    margin-bottom: 0.6rem;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+  }
+  .hero-tagline {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; color: var(--sage);
+    letter-spacing: 0.04em; margin: 1.5rem 0 2rem;
+    opacity: 0; animation: fadeUp 0.8s 0.7s forwards;
+  }
+  .hero-tagline span { margin: 0 0.5rem; color: var(--light-grey); }
+  .btn-primary {
+    display: inline-block;
+    background: var(--sage); color: white;
+    padding: 0.9rem 2.2rem; border-radius: 3rem;
+    text-decoration: none; font-size: 0.9rem; font-weight: 500;
+    letter-spacing: 0.04em;
+    transition: all 0.3s;
+    box-shadow: 0 4px 20px rgba(122,158,135,0.3);
+    opacity: 0; animation: fadeUp 0.8s 0.9s forwards;
+  }
+  .btn-primary:hover {
+    background: var(--terracotta);
+    box-shadow: 0 6px 24px rgba(193,127,90,0.35);
+    transform: translateY(-2px);
+  }
+  .hero-image {
+    position: relative; z-index: 2;
+    display: flex; justify-content: center; align-items: center;
+    opacity: 0; animation: fadeIn 1s 0.6s forwards;
+  }
+  .hero-image-frame {
+    width: 420px; height: 520px;
+    border-radius: 200px 200px 160px 160px;
+    overflow: hidden;
+    box-shadow: 0 30px 80px rgba(0,0,0,0.12), 0 0 0 12px rgba(122,158,135,0.12);
+    position: relative;
+  }
+  .hero-image-frame img {
+    width: 100%; height: 100%; object-fit: cover; object-position: top center;
+  }
+  .hero-image-badge {
+    position: absolute; bottom: -16px; right: 20px;
+    background: white; border-radius: 1rem;
+    padding: 0.7rem 1.2rem;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.1);
+    font-size: 0.78rem; color: var(--mid-grey);
+    border-left: 3px solid var(--sage);
+  }
+  .hero-image-badge strong { display: block; color: var(--charcoal); font-size: 0.85rem; }
+
+  /* ── SECTION BASE ── */
+  section { padding: 6rem 6rem; }
+  .section-label {
+    font-size: 0.72rem; letter-spacing: 0.18em; text-transform: uppercase;
+    color: var(--terracotta); font-weight: 500; margin-bottom: 0.8rem;
+  }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.8rem; font-weight: 500; line-height: 1.2;
+    color: var(--charcoal); margin-bottom: 1rem;
+  }
+  .section-divider {
+    width: 48px; height: 2px;
+    background: linear-gradient(90deg, var(--sage), var(--terracotta-light));
+    margin: 1.2rem 0 2.5rem; border-radius: 2px;
+  }
+
+  /* ── PROBLEMS ── */
+  #problems {
+    background: var(--charcoal);
+    color: white;
+  }
+  #problems .section-title { color: white; }
+  #problems .section-label { color: var(--terracotta-light); }
+  .problems-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.2rem; font-style: italic; color: rgba(255,255,255,0.65);
+    max-width: 560px; line-height: 1.7; margin-bottom: 3.5rem;
+  }
+  .problems-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+  }
+  .problem-card {
+    background: rgba(255,255,255,0.05);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 1rem; padding: 1.8rem;
+    transition: all 0.3s;
+    cursor: default;
+  }
+  .problem-card:hover {
+    background: rgba(122,158,135,0.15);
+    border-color: rgba(122,158,135,0.3);
+    transform: translateY(-4px);
+  }
+  .problem-icon { font-size: 1.6rem; margin-bottom: 0.8rem; }
+  .problem-card h3 {
+    font-size: 0.95rem; font-weight: 500; color: white;
+    margin-bottom: 0.5rem;
+  }
+  .problem-card p { font-size: 0.83rem; color: rgba(255,255,255,0.5); line-height: 1.5; }
+
+  /* ── SERVICES ── */
+  #services { background: var(--sage-pale); }
+  .services-grid {
+    display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem;
+    margin-top: 2rem;
+  }
+  .service-item {
+    display: flex; gap: 1.2rem; align-items: flex-start;
+    background: white; border-radius: 1rem; padding: 1.8rem;
+    box-shadow: 0 2px 20px rgba(0,0,0,0.04);
+    transition: all 0.3s;
+  }
+  .service-item:hover { transform: translateY(-3px); box-shadow: 0 8px 32px rgba(0,0,0,0.08); }
+  .service-icon {
+    width: 44px; height: 44px; border-radius: 12px;
+    background: var(--sage-pale); display: flex; align-items: center;
+    justify-content: center; font-size: 1.3rem; flex-shrink: 0;
+  }
+  .service-item h3 { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.3rem; }
+  .service-item p { font-size: 0.82rem; color: var(--mid-grey); line-height: 1.5; }
+
+  /* ── ABOUT ── */
+  #about {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 6rem;
+    align-items: center; background: var(--warm-white);
+  }
+  .about-image-wrap { position: relative; }
+  .about-img-main {
+    width: 100%; border-radius: 1.5rem;
+    box-shadow: 0 24px 64px rgba(0,0,0,0.1);
+    aspect-ratio: 3/4; object-fit: cover; object-position: top;
+  }
+  .about-img-accent {
+    position: absolute; bottom: -20px; right: -20px;
+    width: 160px; height: 160px; border-radius: 1rem;
+    object-fit: cover;
+    border: 4px solid white;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.12);
+  }
+  .about-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem; font-style: italic;
+    color: var(--mid-grey); line-height: 1.8;
+    border-left: 3px solid var(--sage);
+    padding-left: 1.5rem; margin: 2rem 0;
+  }
+  .about-badges { display: flex; flex-wrap: wrap; gap: 0.7rem; margin-top: 2rem; }
+  .badge {
+    font-size: 0.78rem; padding: 0.4rem 1rem; border-radius: 2rem;
+    background: var(--sage-pale); color: var(--sage); font-weight: 500;
+  }
+
+  /* ── EDUCATION ── */
+  #education { background: var(--cream); }
+  .edu-timeline { position: relative; margin-top: 2rem; }
+  .edu-timeline::before {
+    content: ''; position: absolute; left: 22px; top: 8px; bottom: 8px;
+    width: 1px; background: linear-gradient(to bottom, var(--sage-light), var(--terracotta-light));
+  }
+  .edu-item {
+    display: flex; gap: 2rem; align-items: flex-start;
+    margin-bottom: 2.2rem; position: relative;
+  }
+  .edu-dot {
+    width: 44px; height: 44px; border-radius: 50%;
+    background: white; border: 2px solid var(--sage-light);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 0.72rem; font-weight: 600; color: var(--sage);
+    box-shadow: 0 2px 12px rgba(122,158,135,0.2);
+    position: relative; z-index: 1;
+  }
+  .edu-content { padding-top: 0.4rem; }
+  .edu-year { font-size: 0.72rem; color: var(--terracotta); font-weight: 500; letter-spacing: 0.08em; margin-bottom: 0.2rem; }
+  .edu-degree { font-size: 0.95rem; font-weight: 500; margin-bottom: 0.15rem; }
+  .edu-school { font-size: 0.82rem; color: var(--mid-grey); }
+
+  /* ── ACTIVITIES ── */
+  #activities { background: var(--sage-pale); }
+  .activities-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 2rem;
+  }
+  .activity-card {
+    background: white; border-radius: 1rem; overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+  }
+  .activity-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.1); }
+  .activity-card-tag {
+    padding: 0.6rem 1rem;
+    font-size: 0.7rem; font-weight: 600; letter-spacing: 0.1em;
+    text-transform: uppercase; color: white; background: var(--sage);
+  }
+  .activity-card-tag.corporate { background: var(--terracotta); }
+  .activity-card-tag.community { background: var(--charcoal); }
+  .activity-card-body { padding: 1.2rem; }
+  .activity-card-body h3 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .activity-card-body p { font-size: 0.78rem; color: var(--mid-grey); line-height: 1.5; }
+
+  /* ── SPEAKING ── */
+  #speaking { background: white; }
+  .speaking-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; margin-top: 2rem; }
+  .speaking-list { list-style: none; }
+  .speaking-list li {
+    padding: 0.85rem 0; border-bottom: 1px solid var(--light-grey);
+    display: flex; align-items: center; gap: 0.8rem;
+    font-size: 0.88rem; color: var(--charcoal);
+    transition: color 0.2s;
+  }
+  .speaking-list li:hover { color: var(--sage); }
+  .speaking-list li::before {
+    content: ''; width: 6px; height: 6px; border-radius: 50%;
+    background: var(--sage-light); flex-shrink: 0;
+  }
+  .speaking-col-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem; font-weight: 500; margin-bottom: 1.2rem;
+    color: var(--charcoal);
+  }
+
+  /* ── TESTIMONIALS ── */
+  #testimonials { background: var(--charcoal); color: white; }
+  #testimonials .section-title { color: white; }
+  #testimonials .section-label { color: var(--terracotta-light); }
+  .testimonials-grid {
+    display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem;
+    margin-top: 2.5rem;
+  }
+  .testimonial-card {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.1);
+    border-radius: 1.2rem; padding: 2rem;
+    position: relative; transition: all 0.3s;
+  }
+  .testimonial-card:hover {
+    background: rgba(122,158,135,0.12);
+    border-color: rgba(122,158,135,0.25);
+  }
+  .testimonial-quote {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 3rem; line-height: 1; color: var(--sage);
+    margin-bottom: 0.5rem; opacity: 0.6;
+  }
+  .testimonial-text {
+    font-size: 0.87rem; line-height: 1.7; color: rgba(255,255,255,0.75);
+    font-style: italic; margin-bottom: 1.5rem;
+  }
+  .testimonial-source {
+    font-size: 0.75rem; font-weight: 600; color: var(--sage-light);
+    letter-spacing: 0.08em; text-transform: uppercase;
+  }
+
+  /* ── CONTACT ── */
+  #contact {
+    background: var(--warm-white);
+    text-align: center;
+  }
+  #contact .section-title { text-align: center; }
+  #contact .section-divider { margin: 1.2rem auto 2.5rem; }
+  .contact-intro {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem; font-style: italic; color: var(--mid-grey);
+    max-width: 500px; margin: 0 auto 3rem; line-height: 1.7;
+  }
+  .contact-cards {
+    display: flex; justify-content: center; gap: 1.5rem;
+    flex-wrap: wrap; margin-bottom: 3rem;
+  }
+  .contact-card {
+    background: white; border-radius: 1rem; padding: 1.5rem 2rem;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.06);
+    text-align: center; min-width: 180px;
+    text-decoration: none; color: var(--charcoal);
+    transition: all 0.3s; border: 1px solid var(--light-grey);
+  }
+  .contact-card:hover {
+    border-color: var(--sage); transform: translateY(-3px);
+    box-shadow: 0 8px 32px rgba(122,158,135,0.15);
+  }
+  .contact-card-icon { font-size: 1.8rem; margin-bottom: 0.6rem; }
+  .contact-card-label { font-size: 0.7rem; color: var(--mid-grey); text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 0.3rem; }
+  .contact-card-value { font-size: 0.9rem; font-weight: 500; }
+  .btn-large {
+    display: inline-block; background: var(--sage); color: white;
+    padding: 1.1rem 3rem; border-radius: 3rem; font-size: 1rem;
+    font-weight: 500; text-decoration: none; letter-spacing: 0.04em;
+    box-shadow: 0 6px 28px rgba(122,158,135,0.35);
+    transition: all 0.3s;
+  }
+  .btn-large:hover {
+    background: var(--terracotta);
+    box-shadow: 0 8px 32px rgba(193,127,90,0.35);
+    transform: translateY(-2px);
+  }
+
+  /* ── FOOTER ── */
+  footer {
+    background: #1e1e1e; color: rgba(255,255,255,0.45);
+    text-align: center; padding: 2rem;
+    font-size: 0.78rem; letter-spacing: 0.04em;
+  }
+  footer strong { color: rgba(255,255,255,0.7); }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+  }
+  .reveal {
+    opacity: 0; transform: translateY(32px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .reveal.visible { opacity: 1; transform: translateY(0); }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 1024px) {
+    #hero, #about { grid-template-columns: 1fr; padding: 6rem 2.5rem 4rem; }
+    section { padding: 5rem 2.5rem; }
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { gap: 1.2rem; }
+    .hero-name { font-size: 3rem; }
+    .hero-image { order: -1; }
+    .hero-image-frame { width: 300px; height: 380px; }
+    .problems-grid, .activities-grid, .testimonials-grid { grid-template-columns: 1fr 1fr; }
+    .services-grid { grid-template-columns: 1fr; }
+    .speaking-cols { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 640px) {
+    .nav-links { display: none; }
+    .problems-grid, .activities-grid, .testimonials-grid { grid-template-columns: 1fr; }
+    .section-title { font-size: 2.2rem; }
+    .contact-cards { flex-direction: column; align-items: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Anh Gió</div>
+  <ul class="nav-links">
+    <li><a href="#problems">Bạn cần gì?</a></li>
+    <li><a href="#services">Dịch vụ</a></li>
+    <li><a href="#about">Về tôi</a></li>
+    <li><a href="#education">Học vấn</a></li>
+    <li><a href="#testimonials">Cảm nhận</a></li>
+    <li><a href="#contact" class="nav-cta">Đặt lịch</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-bg-circle c1"></div>
+  <div class="hero-bg-circle c2"></div>
+  <div class="hero-text">
+    <div class="hero-eyebrow">Chuyên gia Tâm lý Trị liệu · TP. Hồ Chí Minh</div>
+    <h1 class="hero-name">Trương Nguyễn<br>Khải Phong</h1>
+    <div class="hero-nickname">— Anh Gió —</div>
+    <p class="hero-title">
+      Thạc sĩ Tâm lý học Ứng dụng (M.Sc., USC – Mỹ)<br>
+      Nhà thực hành Tham vấn &amp; Trị liệu bằng DBT
+    </p>
+    <div class="hero-tagline">
+      Lắng nghe <span>·</span> Thấu hiểu <span>·</span> Đồng hành
+    </div>
+    <a href="#contact" class="btn-primary">Đặt lịch tư vấn ngay →</a>
+  </div>
+  <div class="hero-image">
+    <div style="position:relative">
+      <div class="hero-image-frame">
+        <img src="AnhDaiDien_PhongTNK.jpg" alt="Trương Nguyễn Khải Phong" onerror="this.style.background='linear-gradient(135deg,#a8c5b0,#e8b89a)';this.style.display='block'">
+      </div>
+      <div class="hero-image-badge">
+        <strong>Thạc sĩ Tâm lý</strong>
+        University of Southern California
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS -->
+<section id="problems">
+  <div class="reveal">
+    <div class="section-label">Bạn không cô đơn</div>
+    <h2 class="section-title">Bạn có đang<br>gặp điều này?</h2>
+    <div class="section-divider"></div>
+    <p class="problems-intro">Đôi khi cuộc sống trở nên quá nặng nề. Nếu bạn đang trải qua bất kỳ điều nào dưới đây, hãy biết rằng có người sẵn sàng đồng hành cùng bạn.</p>
+  </div>
+  <div class="problems-grid reveal">
+    <div class="problem-card">
+      <div class="problem-icon">😔</div>
+      <h3>Áp lực & kiệt sức</h3>
+      <p>Cảm thấy mệt mỏi, chán nản, thậm chí tuyệt vọng trước những áp lực của cuộc sống.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">💔</div>
+      <h3>Khó kết nối cảm xúc</h3>
+      <p>Bế tắc trong việc kết nối với cha mẹ, bạn đời, con cái hay những người thân yêu.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🌊</div>
+      <h3>Mất kiểm soát cảm xúc</h3>
+      <p>Không thể kiểm soát cảm xúc, suy nghĩ, hành động và lời nói — tổn thương bản thân và người khác.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🔍</div>
+      <h3>Tìm kiếm bản thân</h3>
+      <p>Đang tìm kiếm giá trị của mình, động lực sống, lòng tự trọng và sự tự hào về bản thân.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">⚡</div>
+      <h3>Lo lắng về rủi ro</h3>
+      <p>Lo lắng về những bất ngờ trong cuộc sống có thể đẩy bạn vào tình huống kiệt quệ tinh thần.</p>
+    </div>
+    <div class="problem-card">
+      <div class="problem-icon">🌿</div>
+      <h3>Mong người thân bình an</h3>
+      <p>Bạn muốn nhìn thấy những người thân yêu sống những ngày tháng hạnh phúc và bình an.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section id="services">
+  <div class="reveal">
+    <div class="section-label">Lĩnh vực hỗ trợ</div>
+    <h2 class="section-title">Tôi có thể<br>đồng hành cùng bạn</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="services-grid reveal">
+    <div class="service-item">
+      <div class="service-icon">🧠</div>
+      <div>
+        <h3>Tham vấn & Trị liệu Tâm lý (DBT)</h3>
+        <p>Xử lý khủng hoảng, trầm cảm, rối loạn lo âu bằng phương pháp Dialectical Behavior Therapy.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">💬</div>
+      <div>
+        <h3>Tham vấn Hồi phục Sức khỏe Tinh thần</h3>
+        <p>Hỗ trợ phục hồi sau chấn thương tâm lý, xây dựng lại nền tảng sức khỏe tinh thần vững chắc.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">👨‍👩‍👧</div>
+      <div>
+        <h3>Nuôi dạy con Chánh niệm</h3>
+        <p>Hỗ trợ cha mẹ trong hành trình nuôi dạy con với chánh niệm và kỷ luật tích cực.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">❤️</div>
+      <div>
+        <h3>Kết nối Cảm xúc trong Gia đình</h3>
+        <p>Cải thiện mối quan hệ giữa cha mẹ – con cái, vợ chồng và các mối quan hệ thân thiết.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🌱</div>
+      <div>
+        <h3>Phát triển Lối sống Tích cực</h3>
+        <p>Xây dựng lối sống khỏe mạnh, tích cực — tìm lại động lực, niềm đam mê và lòng tự trọng.</p>
+      </div>
+    </div>
+    <div class="service-item">
+      <div class="service-icon">🏢</div>
+      <div>
+        <h3>Đào tạo EQ & SKTT cho Doanh nghiệp</h3>
+        <p>Chuyên gia đào tạo Trí thông minh Cảm xúc (EQ) và Sức khỏe Tinh thần tại nơi làm việc cho các tổ chức.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-image-wrap reveal">
+    <img class="about-img-main" src="AnhGio.jpg" alt="Anh Gió – Trương Nguyễn Khải Phong" onerror="this.src='AnhDaiDien_PhongTNK.jpg'">
+    <img class="about-img-accent" src="AnhDaiDien_PhongTNK.jpg" alt="" onerror="this.style.display='none'">
+  </div>
+  <div class="reveal">
+    <div class="section-label">Về tôi</div>
+    <h2 class="section-title">Người đồng hành<br>trên hành trình chữa lành</h2>
+    <div class="section-divider"></div>
+    <p style="font-size:0.92rem; line-height:1.8; color:var(--mid-grey); margin-bottom:1rem;">
+      Tôi là <strong style="color:var(--charcoal)">Trương Nguyễn Khải Phong</strong> — thân gọi <strong style="color:var(--sage)">Anh Gió</strong>. Tốt nghiệp Thạc sĩ Tâm lý học Ứng dụng tại Đại học Nam California (USC, Mỹ), tôi là Chuyên gia tham vấn hồi phục sức khỏe tinh thần và Nhà thực hành trị liệu bằng DBT.
+    </p>
+    <p style="font-size:0.92rem; line-height:1.8; color:var(--mid-grey); margin-bottom:0.5rem;">
+      Tôi đã đồng hành cùng rất nhiều người — cá nhân, gia đình, và tổ chức — trong hành trình vượt qua khủng hoảng, xây dựng lại sức khỏe tinh thần và sống một cuộc đời trọn vẹn hơn.
+    </p>
+    <blockquote class="about-quote">
+      "Mình yêu thích nụ cười của mình ghê. Nụ cười đồng hành cùng ánh mắt mong muốn nhìn thấy mọi thứ vừa chân thực, vừa tự nhiên — và mong muốn chữa lành vết thương trong tâm hồn mọi người mà mình được gặp."
+    </blockquote>
+    <div class="about-badges">
+      <span class="badge">M.Sc. Applied Psychology</span>
+      <span class="badge">DBT Practitioner</span>
+      <span class="badge">PDEP Facilitator</span>
+      <span class="badge">EQ Corporate Trainer</span>
+      <span class="badge">Save the Children</span>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="education">
+  <div class="reveal">
+    <div class="section-label">Hành trình học vấn</div>
+    <h2 class="section-title">Nền tảng tri thức<br>đa chiều & sâu sắc</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="edu-timeline reveal">
+    <div class="edu-item">
+      <div class="edu-dot">🇬🇧</div>
+      <div class="edu-content">
+        <div class="edu-year">2006</div>
+        <div class="edu-degree">B.A. Khoa học Máy tính</div>
+        <div class="edu-school">Đại học Cambridge, Vương quốc Anh</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-dot">🇩🇪</div>
+      <div class="edu-content">
+        <div class="edu-year">2008</div>
+        <div class="edu-degree">B.Sc. Kỹ thuật Truyền thông</div>
+        <div class="edu-school">Đại học Kỹ thuật Ilmenau, Đức</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-dot">🇩🇪</div>
+      <div class="edu-content">
+        <div class="edu-year">2011</div>
+        <div class="edu-degree">M.Eng. Thiết kế Hệ thống</div>
+        <div class="edu-school">Ernst-Abbe-Hochschule Jena, Đức</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-dot">🇺🇸</div>
+      <div class="edu-content">
+        <div class="edu-year">2015</div>
+        <div class="edu-degree">B.Sc. Tâm lý học (Ứng dụng Phân tích Hành vi)</div>
+        <div class="edu-school">California State University, Northridge (CSUN), Mỹ</div>
+      </div>
+    </div>
+    <div class="edu-item">
+      <div class="edu-dot">🇺🇸</div>
+      <div class="edu-content">
+        <div class="edu-year">2017</div>
+        <div class="edu-degree">M.Sc. Tâm lý học Ứng dụng</div>
+        <div class="edu-school">University of Southern California (USC), Los Angeles, Mỹ</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACTIVITIES -->
+<section id="activities">
+  <div class="reveal">
+    <div class="section-label">Ấn phẩm & Hoạt động</div>
+    <h2 class="section-title">Những dấu ấn<br>tiêu biểu</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="activities-grid reveal">
+    <div class="activity-card">
+      <div class="activity-card-tag">Ấn phẩm</div>
+      <div class="activity-card-body">
+        <h3>Sổ tay Nuôi dạy Con</h3>
+        <p>Tác giả biên soạn: Sự phát triển của trẻ qua các giai đoạn & Một số gợi ý dành cho bậc cha mẹ.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-card-tag">Chương trình</div>
+      <div class="activity-card-body">
+        <h3>PDEP Vietnam – Save the Children</h3>
+        <p>Hướng dẫn viên chương trình Kỷ luật Tích cực trong Thực hành Làm Cha Mẹ Hằng Ngày.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-card-tag corporate">Doanh nghiệp</div>
+      <div class="activity-card-body">
+        <h3>FPT Software – Emotional Intelligence</h3>
+        <p>Soft Skill Trainer – Đào tạo Trí thông minh Cảm xúc cho nhân viên FPT Software (2023).</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-card-tag">Cộng đồng</div>
+      <div class="activity-card-body">
+        <h3>Làm Cha Mẹ Chánh Niệm – Forest Link</h3>
+        <p>Hướng dẫn chương trình Mindful Parenting in Everyday Life gồm 8 session trải nghiệm.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-card-tag community">Diễn đàn</div>
+      <div class="activity-card-body">
+        <h3>Psych Cafe – Diễn giả số 66</h3>
+        <p>Chủ đề: "Khi ta nhìn vào cái chết – Sự thật về Bản ngã" tại cộng đồng Psych Cafe.</p>
+      </div>
+    </div>
+    <div class="activity-card">
+      <div class="activity-card-tag">Sự kiện</div>
+      <div class="activity-card-body">
+        <h3>Trò chuyện với Con tuổi Teen</h3>
+        <p>Hướng dẫn viên chương trình phi lợi nhuận PDEP x Save the Children x VACR tại TP.HCM.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SPEAKING -->
+<section id="speaking">
+  <div class="reveal">
+    <div class="section-label">Diễn thuyết & Hợp tác</div>
+    <h2 class="section-title">Đồng hành cùng<br>các tổ chức uy tín</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="speaking-cols reveal">
+    <div>
+      <div class="speaking-col-title">Các trường Đại học</div>
+      <ul class="speaking-list">
+        <li>ĐH Bách Khoa TP.HCM</li>
+        <li>ĐH Khoa học Xã hội & Nhân văn TP.HCM</li>
+        <li>ĐH Kinh tế – Luật TP.HCM</li>
+        <li>ĐH Ngoại ngữ Tin học TP.HCM</li>
+        <li>ĐH Luật TP.HCM</li>
+        <li>ĐH Tôn Đức Thắng</li>
+        <li>ĐH Ngoại Thương CS II TP.HCM</li>
+        <li>ĐH Tài chính Marketing TP.HCM</li>
+        <li>ĐH Kinh tế TP.HCM</li>
+        <li>ĐH Đà Lạt</li>
+      </ul>
+    </div>
+    <div>
+      <div class="speaking-col-title">Tổ chức & Doanh nghiệp</div>
+      <ul class="speaking-list">
+        <li>FPT Software – Corporate Training</li>
+        <li>Vinschool Grand Park</li>
+        <li>Hệ thống Trường Mầm non B.School</li>
+        <li>i-Talents – Parenting Hub for Leaders</li>
+        <li>Toastmasters International</li>
+        <li>Tổ chức Văn hóa – Giáo dục VOIS</li>
+        <li>Cộng đồng Cựu du học sinh iAN</li>
+        <li>Trung tâm Hỗ trợ Học sinh SAC TP.HCM</li>
+        <li>Cộng đồng PDEP miền Nam</li>
+        <li>Dự án Tâm Nhung – Cine cùng Nhà Tâm lý</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section id="testimonials">
+  <div class="reveal">
+    <div class="section-label">Cảm nhận</div>
+    <h2 class="section-title">Những gì cộng đồng<br>chia sẻ về Anh Gió</h2>
+    <div class="section-divider"></div>
+  </div>
+  <div class="testimonials-grid reveal">
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Những chia sẻ về Kỷ luật tích cực đã giúp phụ huynh có thêm nhiều kiến thức bổ ích trong quá trình làm cha mẹ. Điều này có ý nghĩa to lớn trong hành trình nuôi dạy học sinh.</p>
+      <div class="testimonial-source">Ban Giám hiệu · Vinschool Grand Park</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Faci đã chạm đến trái tim của cha mẹ, gieo những hạt giống yêu thương và kỷ luật tích cực vào cuộc sống thường ngày của mỗi gia đình. Đó là giá trị bền vững không thước đo nào có thể đong đếm hết.</p>
+      <div class="testimonial-source">Chủ tịch · i-Talents Leadership Transformation</div>
+    </div>
+    <div class="testimonial-card">
+      <div class="testimonial-quote">"</div>
+      <p class="testimonial-text">Hàm lượng chuyên môn tâm lý học sâu sắc được truyền tải bằng ngôn từ rất đơn giản và sự vững vàng của người hướng dẫn viên gạo cội trong cộng đồng PDEP.</p>
+      <div class="testimonial-source">Faci PDEP · Cộng đồng PDEP miền Nam</div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="reveal">
+    <div class="section-label" style="text-align:center">Bắt đầu hành trình</div>
+    <h2 class="section-title">Hãy cho chúng ta<br>một buổi trò chuyện</h2>
+    <div class="section-divider"></div>
+    <p class="contact-intro">Thân mật và chân thành. Bạn không cần phải hoàn hảo để bắt đầu — chỉ cần sẵn sàng.</p>
+  </div>
+  <div class="contact-cards reveal">
+    <a href="tel:0909352503" class="contact-card">
+      <div class="contact-card-icon">📱</div>
+      <div class="contact-card-label">Zalo / Viber</div>
+      <div class="contact-card-value">0909.35.2503</div>
+    </a>
+    <a href="mailto:truongnguyen.khaiphong@gmail.com" class="contact-card">
+      <div class="contact-card-icon">✉️</div>
+      <div class="contact-card-label">Email</div>
+      <div class="contact-card-value">truongnguyen.khaiphong<br>@gmail.com</div>
+    </a>
+    <a href="https://www.facebook.com/truongnguyenkhaiphong" target="_blank" class="contact-card">
+      <div class="contact-card-icon">💬</div>
+      <div class="contact-card-label">Facebook</div>
+      <div class="contact-card-value">truongnguyenkhaiphong</div>
+    </a>
+  </div>
+  <div class="reveal">
+    <a href="tel:0909352503" class="btn-large">Đặt lịch tư vấn ngay →</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 <strong>Trương Nguyễn Khải Phong</strong> · M.Sc. Tâm lý học Ứng dụng · Nhà thực hành DBT · TP. Hồ Chí Minh</p>
+</footer>
+
+<script>
+  // Scroll reveal
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => {
+      if (e.isIntersecting) { e.target.classList.add('visible'); }
+    });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+</script>
+</body>
+</html>
